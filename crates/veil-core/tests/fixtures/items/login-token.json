@@ -1,0 +1,17 @@
+{
+  "data": "{\"envelope\":\"g1hHpQEDA3gjYXBwbGljYXRpb24veC5iaXR3YXJkZW4uY2Jvci1wYWRkZWQEUJK33PFgKvSE5zTzaZqVO4U6AAE4gQI6AAE4gAGhBUyKDtlEVd4gswc9zu1Yo5h87AyRvPCiVyJUAR4huKldWqLAXso1E47AcMQXSes3Yra9qbQNopYZ9ab/3MQnYiN26kC+Vgq1kNmmWlrY5R7wZ5MPg78Ei71A9VRouQ2D/rC9wWRWysX+FuBP/iXZZ4kWGj5DQsXRUPZjsCrJ8AyUjJDb8WRaRF//XUWNMEuz/RxR9XAcPIzf+EqjJFAlRfbV3RVgwmc3MP7HKfoV2aJf8lk=\",\"format_version\":1,\"wrapped_cek\":\"7.g1gcowE6AAEReQMYZQRQLYzYszBIID2Mgz7Uvs3Ht6EFWBg2WoYlIHhoiwqFB4aTDkPbIAoGIw+Y5F5YTeGm4skZxv2EJVn5UhxUZohcvzAAStmk16D8EgzH3SNK6L3vcyYSFLB8u5OJJv4gIC7ezTdUU8LofAE4MRRi/oMp6DkxyLbWs69eX1Ct\"}",
+  "key": "7.g1gcowE6AAEReQMYZQRQiAih9thc15DoIuJIBOQbMqEFWBg87alXMZTElva4mVUtOyhvCu8M8D3vIupYVEsDP58Ggtz5f/hROJZlySOM6iSy481RkdxDGakPiflY6O4b+RIepg9O1rwKABBQQtT8RwXpp6HwwU+jHvPhl/3DkLXn4RqR14fHNWAP1hbH68rTPQ==",
+  "record": {
+    "name": "demo-service",
+    "notes": null,
+    "typeData": {
+      "autofillOnPageLoad": null,
+      "password": "demo-123:ABC",
+      "passwordRevisionDate": null,
+      "totp": null,
+      "type": "login",
+      "username": null
+    }
+  },
+  "type": 1
+}

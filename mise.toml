@@ -1,0 +1,33 @@
+[tools]
+"rust" = "1.99.1"
+"cargo-deny" = "0.20.2"
+"node" = "22.21.1"
+"sops" = "3.13.3"
+"age" = "1.3.2"
+"zig" = "0.15.2"
+"aqua:rust-cross/cargo-zigbuild" = "0.24.1"
+
+[env]
+RUST_BACKTRACE = "1"
+CARGO_TERM_COLOR = "auto"
+
+[tasks."fmt:check"]
+run = "cargo fmt --all --check"
+
+[tasks.fmt]
+run = "cargo fmt --all"
+
+[tasks.lint]
+run = "cargo clippy --workspace --all-targets -- -D warnings"
+
+[tasks.test]
+run = ["cargo test --workspace --locked", "python3 scripts/test-install.py", "python3 scripts/test-release.py"]
+
+[tasks.check]
+depends = ["fmt:check", "lint", "test", "check:boundary"]
+
+[tasks."check:boundary"]
+run = "cargo deny --manifest-path crates/veil-daemon/Cargo.toml --config crates/veil-daemon/deny.toml check bans"
+
+[tasks."compat:bitwarden"]
+run = ["cargo build --locked -p veil-daemon -p veil-cli", "tests/bitwarden/setup.sh", "tests/bitwarden/run.sh"]

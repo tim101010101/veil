@@ -1,0 +1,138 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      release:
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !inputs.release }}
+
+jobs:
+  checks:
+    name: Workspace checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      VEIL_KEYSTORE: file
+      VEIL_PRESENCE: unavailable
+      MISE_EXEC_AUTO_INSTALL: 'false'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d
+        with:
+          version: 2026.10.3
+          install_args: rust cargo-deny sops age
+          cache: false
+          persist_github_token: false
+      - name: Install check components
+        run: rustup component add rustfmt clippy
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0
+        if: ${{ !inputs.release }}
+        with:
+          key: workspace
+          cache-bin: false
+          save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      - name: Check formatting
+        run: cargo fmt --all --check
+      - name: Run Clippy
+        run: cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Build integration-test server
+        run: cargo build --locked --package veil-daemon --bin veild
+      - name: Test workspace
+        run: cargo test --workspace --locked
+      - name: Test installer and release packaging
+        run: |
+          python3 scripts/test-install.py
+          python3 scripts/test-release.py
+      - name: Check server cryptography boundary
+        run: cargo deny --manifest-path crates/veil-daemon/Cargo.toml --config crates/veil-daemon/deny.toml check bans
+
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: macos-15
+            target: aarch64-apple-darwin
+            tools: rust
+          - runner: macos-15-intel
+            target: x86_64-apple-darwin
+            tools: rust
+          - runner: ubuntu-24.04
+            target: x86_64-unknown-linux-musl
+            tools: rust zig aqua:rust-cross/cargo-zigbuild
+          - runner: ubuntu-24.04-arm
+            target: aarch64-unknown-linux-musl
+            tools: rust zig aqua:rust-cross/cargo-zigbuild
+    defaults:
+      run:
+        shell: bash
+    env:
+      CARGO_TERM_COLOR: always
+      MISE_EXEC_AUTO_INSTALL: 'false'
+      TARGET: ${{ matrix.target }}
+      VEIL_BUILD_COMMIT: ${{ github.sha }}
+      VEIL_KEYSTORE: file
+      VEIL_PRESENCE: unavailable
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d
+        with:
+          version: 2026.10.3
+          install_args: ${{ matrix.tools }}
+          cache: false
+          persist_github_token: false
+      - name: Configure reproducible paths
+        run: |
+          {
+            echo "RUSTFLAGS=--remap-path-prefix=$GITHUB_WORKSPACE=/src/veil --remap-path-prefix=$HOME=/home/build"
+            echo "CFLAGS=-ffile-prefix-map=$HOME=/home/build -ffile-prefix-map=$GITHUB_WORKSPACE=/src/veil"
+            echo "CXXFLAGS=-ffile-prefix-map=$HOME=/home/build -ffile-prefix-map=$GITHUB_WORKSPACE=/src/veil"
+            echo "SOURCE_DATE_EPOCH=$(git show -s --format=%ct HEAD)"
+            echo "VEIL_HOME=$RUNNER_TEMP/veil-smoke"
+          } >> "$GITHUB_ENV"
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0
+        if: ${{ !inputs.release }}
+        with:
+          key: cli-${{ matrix.target }}
+          cache-bin: false
+          save-if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+      - name: Build native CLI
+        run: |
+          if [[ "$TARGET" == *-linux-musl ]]; then
+            rustup target add "$TARGET"
+            cargo zigbuild --release --locked --package veil-cli --target "$TARGET"
+            strip --strip-debug "target/$TARGET/release/veil"
+          else
+            cargo build --release --locked --package veil-cli --target "$TARGET"
+            strip -S "target/$TARGET/release/veil"
+          fi
+      - name: Generate dependency notices
+        run: python3 scripts/third-party-notices.py --target "$TARGET" --output "$RUNNER_TEMP/THIRD-PARTY-NOTICES.txt"
+      - name: Smoke-test and package CLI
+        run: python3 scripts/release.py package --target "$TARGET" --notices "$RUNNER_TEMP/THIRD-PARTY-NOTICES.txt" --output dist
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cli-${{ matrix.target }}
+          path: dist/*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7

@@ -1,0 +1,28 @@
+[package]
+name = "veil-presence"
+description = "Asks the person at the machine to confirm a delivery (Touch ID on macOS)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+publish.workspace = true
+
+[target.'cfg(target_os = "macos")'.dependencies]
+block2 = "0.6"
+objc2 = "0.6"
+objc2-foundation = { version = "0.3", features = ["NSError", "NSString"] }
+objc2-local-authentication = { version = "0.3", features = ["LAContext", "LAError", "block2"] }
+
+# The workspace forbids unsafe code. This crate is the documented exception: LocalAuthentication
+# is only reachable through Objective-C calls the bindings mark unsafe. Every unsafe block names
+# the invariant it relies on; everything else matches the workspace lints.
+[lints.rust]
+unsafe_code = "deny"
+rust_2018_idioms = { level = "warn", priority = -1 }
+
+[lints.clippy]
+dbg_macro = "warn"
+todo = "warn"
+unimplemented = "warn"
+undocumented_unsafe_blocks = "deny"

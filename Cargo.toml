@@ -1,0 +1,67 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/veil-cli",
+    "crates/veil-core",
+    "crates/veil-proto",
+    "crates/veil-daemon",
+    "crates/veil-presence",
+]
+
+[workspace.package]
+version = "0.4.2"
+edition = "2024"
+rust-version = "1.99"
+license = "AGPL-3.0-only"
+repository = "https://github.com/tim101010101/veil"
+publish = false
+
+[workspace.dependencies]
+# Internal crates (single release unit: every crate ships at the workspace version).
+veil-core = { path = "crates/veil-core", version = "0.4.2" }
+veil-presence = { path = "crates/veil-presence", version = "0.4.2" }
+veil-proto = { path = "crates/veil-proto", version = "0.4.2" }
+
+anyhow = "1"
+base64 = "0.22"
+# The Bitwarden SDK owns all Item cryptography. Pinned exactly: a bump is a
+# deliberate change that regenerates the golden fixtures in crates/veil-core/tests/fixtures.
+bitwarden-core = { version = "=4.0.0", features = ["internal"] }
+bitwarden-crypto = "=4.0.0"
+bitwarden-encoding = "=4.0.0"
+ed25519-dalek = { version = "2", features = ["rand_core"] }
+rand_core = { version = "0.6", features = ["getrandom"] }
+rusqlite = { version = "0.37", features = ["bundled"] }
+sha2 = "0.10"
+zeroize = { version = "1", features = ["zeroize_derive"] }
+assert_cmd = "2"
+axum = "0.8"
+clap = { version = "4", features = ["derive", "env"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread", "net", "signal"] }
+toml = "1"
+rpassword = "7"
+ureq = { version = "2", features = ["json"] }
+jsonwebtoken = "9"
+tower = { version = "0.5", features = ["util"] }
+tower-http = { version = "0.7", features = ["trace"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+utoipa = "6"
+uuid = { version = "1", features = ["serde", "v7"] }
+
+[workspace.lints.rust]
+# Only crates that document the exception may opt out, locally and with a comment.
+unsafe_code = "forbid"
+rust_2018_idioms = { level = "warn", priority = -1 }
+
+[workspace.lints.clippy]
+dbg_macro = "warn"
+todo = "warn"
+unimplemented = "warn"
+
+# RSA key generation and Argon2 are unusably slow without optimization; tests create both.
+[profile.dev.package."*"]
+opt-level = 2

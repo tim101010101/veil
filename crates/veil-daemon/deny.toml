@@ -1,0 +1,21 @@
+# Trust boundary of veild.
+#
+# veild stores sealed records and maps fields; it must never link a decryption path. Run with
+# veil-daemon as the only root, so the bans apply to veild's tree and not to the CLI's:
+#
+#   cargo deny --manifest-path crates/veil-daemon/Cargo.toml --config crates/veil-daemon/deny.toml check bans
+#
+# veild may use the wire models of bitwarden-api-api and bitwarden-api-identity, which do not
+# depend on any of the crates below.
+
+[graph]
+all-features = true
+
+[bans]
+multiple-versions = "allow"
+wildcards = "allow"
+deny = [
+    { crate = "veil-core", reason = "veil-core holds keys and decrypts; veild must not link it" },
+    { crate = "bitwarden-crypto", reason = "the SDK's cipher code decrypts Items; veild only maps fields" },
+    { crate = "bitwarden-core", reason = "the SDK's key management unwraps account keys; veild only maps fields" },
+]

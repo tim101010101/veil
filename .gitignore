@@ -1,0 +1,8 @@
+/target
+/.cargo
+/.env
+/.env.*
+.DS_Store
+/compat-work
+*.local.toml
+/releases/*seed*

@@ -1,0 +1,47 @@
+{
+  "source": "bitwarden/sdk-internal@8d6a6715d539351cf9fffbfccf8e1bcb25135f6f crates/bitwarden-vault/src/cipher/blob/v1.rs",
+  "note": "Recorded CipherBlobV1 test vectors sealed by the Bitwarden SDK itself. Each envelope opens with its content key (cek) directly. `expect` lists the fields veil reads.",
+  "vectors": {
+    "login": {
+      "cek": "pQEEAlClJ9tO9x8fN2JVe5N8uzAaAzoAARFvBIEEIFggZwJXkLK7A6Sy5Y9+dacJrzCg9bo4RMRxXaRGDWYfbTYB",
+      "envelope": "g1hLpQE6AAERbwN4I2FwcGxpY2F0aW9uL3guYml0d2FyZGVuLmNib3ItcGFkZGVkBFClJ9tO9x8fN2JVe5N8uzAaOgABOIECOgABOIABoQVYGNYP1rgAT3D2T6q2lGTRjIPHR2IELUDWE1kC2erlZM4Dqyeew1VlDkdXnZIE+t2g4SJh8IFSHo9WuzmyY+qC+V9cuGW3QHt+sg7pfZ5kQBh40U9uxUcxOHdVF3jQhcAmgB9abShR68u41NMDwwLSafG8PLzsUfhhxpCG0+ZuOda3tFVM1y5TyiDPJBBoJECuYK/K/1RLNAWAy5AU98yI0RgdK0MHxpoOqdSC8dXXu6fGgON7XLQWkkceFWILp0o51/c7OvdJ3B1nCiCIZjwAyS96+oWOzLrsPaGkBjqedBCi5iwelzLOttXk6nrzE/FfC0PkeeSsPSr9UdXBbeuUSK7wKtir9Lx/gtJ4sMPFidtTNdXCcDT9RA7y21h+3+wHQgGSlOGRigXFgXWi5ajSPCs9zLn7ERoG4BZ4IHa6EMSJbGH1pANW+Ibg4aadBF7LzOi/BZx2oZ/6z54XfAfqb44FR3/XXdNFHosPH9IH7CkKbNvLTuGrOTk9S998qFDNkWeGthrDYclaYSFktSHULvmHhSPadRL4uM6254HTmSjTAG6FDhhqdJU3SvoifrvBeHqjEP7F5R+zjVQol+JUcs/ExwmlrxXETOTzGyC/++FflZyPIUnH9U7ZqXhiYGd0ZvcyrnrnieehYToWFdwFR9ho+6h9hB/SCjhGudP5CRPZDL9GkNAUS5+pAd4ZC19fDjWpwMnEbgPTuthXKl6YRHxxCV+xpc9jncVQt9zF31e0bSIP7kVcdmlgjXaV6Nmd3aZ+PqeJnj27gCxG2tZkMimdJmEgxkL/cfvNHENg43+rpnV2mCTrCAO/X+RDGKdi7SIzsLesPVXVHEZCM4UBv2v+S/vpDFC3ie09cz525PCgt/7Je68k8S5WsTwKVeL0+T/ysqDo7wJvFSToY2G/LOGnBYMUYcCLfJGQbD8g2xI3oC+go8kcyVDJv+936/MkAYSxnvZDrMr30zEZaNm5YBh8cRqKr4MxOjJBk1XWjwDNsSQrDw==",
+      "expect": {
+        "name": "Test Login",
+        "type": "login",
+        "fields": {
+          "notes": "Login notes",
+          "username": "testuser@example.com",
+          "password": "p@ssw0rd123",
+          "uri": "https://example.com/login",
+          "totp": "otpauth://totp/test?secret=JBSWY3DPEHPK3PXP",
+          "Custom Field": "custom-value"
+        }
+      }
+    },
+    "secure_note": {
+      "cek": "pQEEAlApYxU9rgfIc9v9sHuglhkKAzoAARFvBIEEIFggDKYmieFA7a0UoOMAt4BErOpk7VfwZI8Dk0Yc9FxFzWIB",
+      "envelope": "g1hLpQE6AAERbwN4I2FwcGxpY2F0aW9uL3guYml0d2FyZGVuLmNib3ItcGFkZGVkBFApYxU9rgfIc9v9sHuglhkKOgABOIECOgABOIABoQVYGMihknYX7mrmC03/w0V7rTMij2+q237p21h2H2Sq0hnlzZ4ka8yMW1yFOOMSt5ZS3tNQxzT07qeeY10tAeczgizA2g5AvmIQJdXK+7KR5mP3zk5VaVfGjC9mZUUFXwIAXsxC16HUII7Z1Iwhpd+MrJDf+itZGFVd07ExaXkH5+MjfaXhJqXBSxAStCG5zLGsEg==",
+      "expect": {
+        "name": "Test Secure Note",
+        "type": "secureNote",
+        "fields": {
+          "notes": "Some notes"
+        }
+      }
+    },
+    "ssh_key": {
+      "cek": "pQEEAlApE2RsnNwb3+3FyIr/kcfWAzoAARFvBIEEIFggDk3igU6wYnicl6jRSYILSaPlDWYCjnRUqMLdqfPkVKAB",
+      "envelope": "g1hLpQE6AAERbwN4I2FwcGxpY2F0aW9uL3guYml0d2FyZGVuLmNib3ItcGFkZGVkBFApE2RsnNwb3+3FyIr/kcfWOgABOIECOgABOIABoQVYGHPwqnuSuDHdwTg3twT5B0b3AXKVK+cySVkBSzorjdnfAdt1aNM32x3BPUg4QMkR99SQum3yc4eIT5eqi2FZjHyvEVPMwxfcWqg26g8UTc3dsRW57RYRF4ajx4+MGcJj+wWTrI8jPmthhLAnEHT11eC2YjYIW1INWKGFJTKnTjwHw1LTVJvEzA9MAZRk2y2NC+qkkdDM3wKmhl4PqoEPmt/x6qBjlR5+rlA4rUqkm9ja+NqqEbz8McGXBw8QWOh99/xE1PorFk7S+o9LW1Kcv1/GL+1wv6X7tTo1dYVYa2uCo9Hp9C8D5zXz/iVLm9w98NQFZQlteO8yibEOp+F/VNpgpsmZjOQzJ6wf0hKabFF2eXIUJ2RT1vJT+zUdcfc+TMkypaBbJEagmAiEBnZFcxVEhQ3tn1ZyJFRUcMzm91azIHQMmQ9cS6h/SqTGFF3z+q0H4+8w2S+yl+D5/OVWQHKcSOFvsPA=",
+      "expect": {
+        "name": "Test SSH Key",
+        "type": "sshKey",
+        "fields": {
+          "notes": "SSH key notes",
+          "private_key": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEA\n-----END OPENSSH PRIVATE KEY-----",
+          "public_key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI test@example.com",
+          "fingerprint": "SHA256:abcdefghijklmnopqrstuvwxyz012345678901234567"
+        }
+      }
+    }
+  }
+}

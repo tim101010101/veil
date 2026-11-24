@@ -1,0 +1,21 @@
+{
+  "data": "{\"envelope\":\"g1hHpQEDA3gjYXBwbGljYXRpb24veC5iaXR3YXJkZW4uY2Jvci1wYWRkZWQEUIjJ8RGyugxqfkuk/6HHfzY6AAE4gQI6AAE4gAGhBUyVXaisxmMYij30NAJY2W/IU288RcxBZxVnOBwhrk0lpa0nM+84ivWESYstfuBdr0+Cty6EfAA8pVVTfS7vY3OXdemeXGJDdP019h3lBOSmSav14uFtxWymq+qawgPJE9YobqdbWeCaoIE/KiJxMOTlHUz6HCDI8NXBIVCOrRPL8WfuTQ3h53910Zy4jwTHAS27oS61u2bCRleYr/eSB8X/RIWv2AbA8dKnlY+akzXTfoDMjrY9+DbbTXKrSzrDlvKCwmgd1TpcWXZRaNviuEt2f94MZwJIQxnEIcjJOiqnd4Ko3L94fgU=\",\"format_version\":1,\"wrapped_cek\":\"7.g1gcowE6AAEReQMYZQRQJ+kUXzlhZyMqPty5ZyTVpKEFWBh+7K/dQwovBa7vUVSbR+DoiZfTnmzchjFYTUoqv5MXosTPRW0Y/3pKUF3RxDP/lKF0KS+KU0kycUGPnfnx+2K12t1gFmKKKH4jo6V5a7mx7j0TvDq77JtNHj6OXMwHpbYCxMBuDW3P\"}",
+  "key": "7.g1gcowE6AAEReQMYZQRQiAih9thc15DoIuJIBOQbMqEFWBgcPZxz9jow9qjlOd9jnqaFHJL9lepyqxFYVOeJnQdZD5HCLPFnBrYMmicVY7y2fAGbwxmEBAm75M5Uw6fVZ0RQjz73eSTpO6B2Cg46M+Qtt4ezIyBQTURKcTfGHmS2FF/a0aWCR0LXhAbQjrdedQ==",
+  "record": {
+    "fields": [
+      {
+        "linkedId": null,
+        "name": "TLS_KEY_PASSPHRASE",
+        "type": 1,
+        "value": "hunter2"
+      }
+    ],
+    "name": "tls",
+    "notes": "-----BEGIN CERTIFICATE-----\nMIIB\n-----END CERTIFICATE-----",
+    "typeData": {
+      "secureNoteType": 0,
+      "type": "secureNote"
+    }
+  },
+  "type": 2
+}

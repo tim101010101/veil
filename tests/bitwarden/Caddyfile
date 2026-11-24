@@ -1,0 +1,10 @@
+{
+	skip_install_trust
+	admin off
+	auto_https disable_redirects
+}
+
+https://localhost:{$COMPAT_TLS_PORT} {
+	tls internal
+	reverse_proxy {$COMPAT_UPSTREAM}
+}

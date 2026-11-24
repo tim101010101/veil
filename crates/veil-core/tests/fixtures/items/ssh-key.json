@@ -1,0 +1,15 @@
+{
+  "data": "{\"envelope\":\"g1hHpQEDA3gjYXBwbGljYXRpb24veC5iaXR3YXJkZW4uY2Jvci1wYWRkZWQEUFtCiB8N0XVEXH9Nczw3tTQ6AAE4gQI6AAE4gAGhBUyj1J88OoxR1ASGjfZZATVyZ0qIxUggcrAPm71flPSVf8S91r5r9WwtaoMEJAxGFf5kqb0qc3ZCjwZLQwV8Yx0XOzdy0GpfPSVskzKbQrS4Ab3znx0LXlsLZUXAtPYckPZtCgr3ml7nwOLC1fAMJOk7C6IClCdAnORBgUUArd9dEAsLvNAFMgtLu5JeDDmoh43dcGmvnQ0AP0ByiGVNorXnmtQhPb85xJnbiAki6H7pH9py9ti5FQiRuNvFbjQhgzBl4mu0KcM+fo7TVyNNyqjOKp71QoL929dy4HDoFbzGWdHrlxAf0oMcO0k4RDZfvASCK50mh9mSKnFGPl2Z4z6f/x1YIjLLbMwKHbc3abDZ7cg1e0gLDMchirF8sxYOoYanBrmisbhAdyUQNVM2pi47r4SH6V48tvsBDQjCBNXC44hyuxY=\",\"format_version\":1,\"wrapped_cek\":\"7.g1gcowE6AAEReQMYZQRQn99hsApS4TaoXbu7RBDAmKEFWBintG7JfHCgElmG9zqpJ+jDnqEqMgxJxWlYTTLD/vDhS128RlfoSDsxn3rxfhbEzxcs9hryNv+QjeTcSh8ZwxOvjFkCRGH20b4ozUbN9SOeRoc+mY3g9CICmBMjt6AidWt5W2kVOoyk\"}",
+  "key": "7.g1gcowE6AAEReQMYZQRQiAih9thc15DoIuJIBOQbMqEFWBgLCWQmKY2QZLlWRF3wesHE3nTBUzfDGcVYVB5gM5O8t4mUXnyi5VJlepePID04BF5nV0REHk0Sklq3HWf4isCS7QE/aSzZkyNEue/iNRZmN4Xm2158FaCkWQmygIlrxFQmzH2kwNZJMcpqx13mTw==",
+  "record": {
+    "name": "deploy-key",
+    "notes": null,
+    "typeData": {
+      "fingerprint": "SHA256:deploydeploydeploydeploydeploydeploydeploy",
+      "privateKey": "-----BEGIN OPENSSH PRIVATE KEY-----\nb3BlbnNzaC1rZXktdjEA\n-----END OPENSSH PRIVATE KEY-----",
+      "publicKey": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI deploy@veil",
+      "type": "sshKey"
+    }
+  },
+  "type": 5
+}

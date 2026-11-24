@@ -1,0 +1,37 @@
+{
+  "data": "{\"envelope\":\"g1hHpQEDA3gjYXBwbGljYXRpb24veC5iaXR3YXJkZW4uY2Jvci1wYWRkZWQEUCDwQTCrxngbGiw4PX3SZnc6AAE4gQI6AAE4gAGhBUyhAl4gq0F4uLP30m9ZAUyIoi4zfOo9ASz8OHgsXQAdtoT4KhottCTj+i04Za4QlbjMbIdmRGh8Aen7lXTFFhxcXuyLIdM3cDsNeKD7wh0o3DK0nyqeB+uY8pxZachJZb0/4FAGN/LAhoQ1m9pPExxWBT2EQ43zVTF7Ygs6fv59nfuJDKMfEUf2CrlgH06yjWmx/MWgYgzS0Ia4Fq9ozuUnYdqe0/84+rCzwLgEmCXDhgPL8BcrYveU73/6nKcD/XoNfFmsIY4uv6yMLbphOrKCsWMg1sBAt7cSTvQGf0sKq7dOfIGqIQsFDMoXp+rn2ZV+zYe0c/bFDJEAAsBvjco71bo3Pn5dKycmj6NnjrhcCfVKzeTVRHokurw+dVKhp45wW7zpvDtPo8F0rJApBhcOTBNCuPYIFA8v435h0BqS7Pf96eFPyywwnNUfgHfuNK7s9fZopATn70p2sw==\",\"format_version\":1,\"wrapped_cek\":\"7.g1gcowE6AAEReQMYZQRQab2Iz1t27Xd7uv+F7P0cs6EFWBjsFL6956BDfKxolcwhqI1Domixmmg5CHZYTUrw6Nxzms3S4vvNdtfWvTCOIqZkHTc8/rneknC9u+zMB3M9NhG7gp1liyy9y1PWA5x0xh1GoUEQqtxPGU6nK3ca4UYY4bqQQxN7GVE2\"}",
+  "key": "7.g1gcowE6AAEReQMYZQRQiAih9thc15DoIuJIBOQbMqEFWBgO5CPWLm6CgNPdIuenTdy/szgx4HuWb1RYVBv4X5PA/L369OCQ2L8KuoZMQ6I43AAMkD1MkkJY25y0Bg28irnhNMYRZHobAjaDvbhL/XAX6E15Gap54StPyue9agKDOFmtQsb9v42yhypXZTQpAQ==",
+  "record": {
+    "fields": [
+      {
+        "linkedId": null,
+        "name": "client_secret",
+        "type": 1,
+        "value": "oidc-s3cret"
+      },
+      {
+        "linkedId": null,
+        "name": "client_id",
+        "type": 0,
+        "value": "example_app"
+      }
+    ],
+    "name": "example_app",
+    "notes": "admin account",
+    "typeData": {
+      "autofillOnPageLoad": null,
+      "password": "example-pw",
+      "passwordRevisionDate": null,
+      "totp": null,
+      "type": "login",
+      "uris": [
+        {
+          "match": null,
+          "uri": "https://app.example.com"
+        }
+      ],
+      "username": "admin"
+    }
+  },
+  "type": 1
+}
