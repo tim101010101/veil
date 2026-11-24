@@ -16,7 +16,7 @@ pub enum Policy {
     None,
     /// Touch ID at this machine for every delivery.
     Presence,
-    /// Approval on another Device (milestone M12).
+    /// Approval on another Device (planned, not implemented).
     Device,
 }
 
