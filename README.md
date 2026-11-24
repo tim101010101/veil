@@ -1,5 +1,7 @@
 # Veil
 
+English | [简体中文](README.zh-CN.md)
+
 A self-hosted secrets vault for command-line tools, CI workloads, and AI agents.
 Encrypt secrets on your device, keep references in your project, and deliver values only
 when a command needs them. The server stores ciphertext, not decryption keys.
@@ -29,7 +31,7 @@ its output. The original `.env` remains on disk.
   enable it.
 - Read and write the same store with supported Bitwarden clients.
 
-Veil is early, pre-1.0 software. Read the limits below before
+Veil is early, pre-1.0 software. Read the [security boundaries](#security-boundaries) before
 storing real secrets. Veil is independent of Bitwarden and is not an official Bitwarden product.
 Compatibility covers [pinned, tested clients](tests/bitwarden/README.md), not every Bitwarden
 version or feature.
@@ -107,9 +109,8 @@ and troubleshooting. Back up a self-hosted server using [backup and restore](doc
 - Presence approval requires macOS. Other platforms refuse delivery from vaults that require it.
 - Keep the management API private. Bitwarden access does not require exposing the entire API.
 
-Read the [deployment guide](docs/deployment.md)
-before using real secrets. For vulnerability reports, follow the [security policy](SECURITY.md),
-not the public issue tracker.
+Read the [deployment guide](docs/deployment.md) before using real secrets. For vulnerability
+reports, follow the [security policy](SECURITY.md), not the public issue tracker.
 
 ## Documentation
 
